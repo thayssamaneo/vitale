@@ -3,7 +3,7 @@
 
 
 
-**Autores:** Maria Eduarda Correa, Rian , Thayssa Maneo \ 
+**Autores:** Maria Eduarda Correa, Rian , Thayssa Maneo \
 **Padrão Internacional:** ISO/IEC/IEEE 29148:2018\
 **Versão:** 1.0.0  \
 **Data:** 05/11/2026
