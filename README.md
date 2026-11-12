@@ -3,9 +3,9 @@
 
 
 
-**Autores:** Maria Eduarda Correa, Rian , Thayssa Maneo  
-**Padrão Internacional:** ISO/IEC/IEEE 29148:2018
-**Versão:** 1.0.0  
+**Autores:** Maria Eduarda Correa, Rian , Thayssa Maneo \ 
+**Padrão Internacional:** ISO/IEC/IEEE 29148:2018\
+**Versão:** 1.0.0  \
 **Data:** 05/11/2026
 ---
 ## 0. Pesquisas - Principais problemas relacionados ao acesso de idosos a conteúdos de saúde
