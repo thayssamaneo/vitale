@@ -1,74 +1,48 @@
 # Vitale - Documentação e Levantamento de Requisitos
 
-
-
-
-**Autores:** Maria Eduarda Correa, Rian , Thayssa Maneo \
-**Padrão Internacional:** ISO/IEC/IEEE 29148:2018\
-**Versão:** 1.0.0  \
+**Autores:** Maria Eduarda Correa, Rian , Thayssa Maneo  
+**Padrão Internacional:** ISO/IEC/IEEE 29148:2018
+**Versão:** 1.0.0  
 **Data:** 05/11/2026
+
 ---
+
 ## 0. Pesquisas - Principais problemas relacionados ao acesso de idosos a conteúdos de saúde
-
-
 ### 0.1  Interfaces Inacessíveis e Falta de Design Inclusivo (UI/UX):
-Ausência de recursos essenciais de acessibilidade: Diversos portais e aplicativos falham em oferecer suporte a ferramentas básicas, como audiodescrição, ajustes de contraste e leitor de tela para pessoas com deficiências visuais ou auditivas.
-Design inadequado às mudanças cognitivas e sensoriais: As plataformas raramente são projetadas levando em consideração as necessidades da população idosa, apresentando elementos visuais confusos, ícones de difícil visualização, botões pequenos e excesso de termos técnicos de tecnologia ("tecniquês") que prejudicam a navegação intuitiva.
+**Ausência de recursos essenciais de acessibilidade:** Diversos portais e aplicativos falham em oferecer suporte a ferramentas básicas, como audiodescrição, ajustes de contraste e leitor de tela para pessoas com deficiências visuais ou auditivas.
+**Design inadequado às mudanças cognitivas e sensoriais:** As plataformas raramente são projetadas levando em consideração as necessidades da população idosa, apresentando elementos visuais confusos, ícones de difícil visualização, botões pequenos e excesso de termos técnicos de tecnologia ("tecniquês") que prejudicam a navegação intuitiva.
 ### 0.2   Barreiras de Linguagem e Complexidade do Conteúdo:
-Linguagem médica técnica sem simplificação: Muitas plataformas institucionais de saúde utilizam terminologias científicas e médicas densas (como descrições técnicas de vacinas e mecanismos de ação) sem a devida adaptação para pessoas com menor escolaridade ou baixo letramento em saúde.
-Falta de resumos executivos: Há escassez de materiais informativos formatados em linguagem simples e direta, o que limita a compreensão e a capacidade do idoso de agir de forma autônoma sobre a própria saúde.
+**Linguagem médica técnica sem simplificação:** Muitas plataformas institucionais de saúde utilizam terminologias científicas e médicas densas (como descrições técnicas de vacinas e mecanismos de ação) sem a devida adaptação para pessoas com menor escolaridade ou baixo letramento em saúde.
+**Falta de resumos executivos:** Há escassez de materiais informativos formatados em linguagem simples e direta, o que limita a compreensão e a capacidade do idoso de agir de forma autônoma sobre a própria saúde.
 ### 0.3   Insegurança, Medo de Errar e Ansiedade Gerontecnológica:
-Receio de falhas e golpes digitais: É recorrente a hesitação dos idosos em interagir com interfaces digitais por medo de danificar o dispositivo, cometer erros de navegação ou ser vítima de fraudes e vazamento de dados pessoais.
-Baixa percepção de autoeficácia: O preconceito etário (idadismo) e a falta de suporte inicial geram uma ansiedade gerontecnológica, fazendo com que muitos idosos se sintam incapazes de aprender a manusear novos recursos e acabem abandonando as aplicações.
+**Receio de falhas e golpes digitais:** É recorrente a hesitação dos idosos em interagir com interfaces digitais por medo de danificar o dispositivo, cometer erros de navegação ou ser vítima de fraudes e vazamento de dados pessoais.
+**Baixa percepção de autoeficácia:** O preconceito etário (idadismo) e a falta de suporte inicial geram uma ansiedade gerontecnológica, fazendo com que muitos idosos se sintam incapazes de aprender a manusear novos recursos e acabem abandonando as aplicações.
 ### 0.4    Dificuldade na Avaliação Crítica da Informação (Letramento Digital):
-Vulnerabilidade à desinformação: Devido ao baixo letramento digital em saúde, muitos idosos enfrentam grandes dificuldades para filtrar informações on-line, distinguir fontes de alta qualidade de conteúdos duvidosos e identificar fake news ou golpes.
-Falta de confiança na tomada de decisões: Mesmo quando conseguem localizar informações digitais de saúde, o nível de confiança e segurança para avaliar a precisão do conteúdo e aplicar esses dados no cuidado diário permanece significativamente baixo.
+**Vulnerabilidade à desinformação:** Devido ao baixo letramento digital em saúde, muitos idosos enfrentam grandes dificuldades para filtrar informações on-line, distinguir fontes de alta qualidade de conteúdos duvidosos e identificar fake news ou golpes.
+**Falta de confiança na tomada de decisões:** Mesmo quando conseguem localizar informações digitais de saúde, o nível de confiança e segurança para avaliar a precisão do conteúdo e aplicar esses dados no cuidado diário permanece significativamente baixo.
 ### 0.5  Foco Excessivo no Modelo Biomédico e Escassez de Guias Práticos:
-Conteúdo centrado em doenças e tratamentos: Os portais costumam focar excessivamente em um modelo curativo e biomédico (como campanhas de vacinação e gestão de morbidades crônicas), em vez de promover uma visão integral de envelhecimento ativo.
-Lacunas em áreas críticas de cuidado: Há pouca oferta de orientações práticas direcionadas ao suporte de familiares e cuidadores, além da sub-representação de temas como saúde mental e cuidados paliativos.
+**Conteúdo centrado em doenças e tratamentos:** Os portais costumam focar excessivamente em um modelo curativo e biomédico (como campanhas de vacinação e gestão de morbidades crônicas), em vez de promover uma visão integral de envelhecimento ativo.
+**Lacunas em áreas críticas de cuidado:** Há pouca oferta de orientações práticas direcionadas ao suporte de familiares e cuidadores, além da sub-representação de temas como saúde mental e cuidados paliativos.
 ### 0.6  Homogeneização do Usuário e Exclusão Social:
-Desconsideração das diversidades regionais e de comorbidades: A maioria das soluções digitais adota uma abordagem genérica baseada em recomendações universais, ignorando adaptações para idosos com diferentes graus de limitação funcional, comorbidades ou pertencentes a comunidades rurais e indígenas.
-Dependência exclusiva do meio digital: Ao focar a prestação de serviços e orientações quase exclusivamente em plataformas on-line ou aplicativos, acaba-se aprofundando a exclusão de idosos de menor renda e escolaridade que não possuem conectividade ou dispositivos adequados.
+**Desconsideração das diversidades regionais e de comorbidades:** A maioria das soluções digitais adota uma abordagem genérica baseada em recomendações universais, ignorando adaptações para idosos com diferentes graus de limitação funcional, comorbidades ou pertencentes a comunidades rurais e indígenas.
+**Dependência exclusiva do meio digital:** Ao focar a prestação de serviços e orientações quase exclusivamente em plataformas on-line ou aplicativos, acaba-se aprofundando a exclusão de idosos de menor renda e escolaridade que não possuem conectividade ou dispositivos adequados.
 __________________________________________________________
-
-
 ## 1. Introdução
-
-
 ### 1.1 Objetivo
-
-
-Criar uma plataforma web e um aplicativo mobile para auxiliar o público idoso a manter o tratamento com remédios organizado, sinalizar sintomas, encontrar médicos disponíveis de forma acessível e intuitiva. Além disso, permite encontrar voluntários disponíveis para acompanhar os usuários nas consultas.
-
-
+Criar uma plataforma web e um aplicativo mobile para auxiliar o público idoso a sinalizar sintomas de forma acessível e intuitiva.
 ### 1.2 Funções do Sistema
 De acordo com as necessidades dos stakeholders, as funções essenciais do sistema compreendem:
-
-
 1. **Registro de medicamentos:**
-
-
 - O software deve permitir o registro de um novo medicamento com as informações necessárias.
- 
 2. **Sinalização de sintomas:**
-
-
 - O software deve permitir a sinalização de sintomas de forma simples.
 - O software deve indicar especialistas que podem ser procurados com base nos sintomas.
-   
 3. **Encontrar médicos:**
-
-
 - O software deve encontrar especialistas na região com seu local de atendimento e meio de agendamento.
 - O software deve permitir o cadastro de médicos e validar o cadastro de acordo com o crm.
-
-
 4. **Encontrar voluntários:**
-
-
 - O software deve encontrar voluntários para acompanhamento em consultas.
 - O software deve permitir o cadastro de voluntários para o acompanhamento em consultas.
-   
 ### 1.3 Páginas do Aplicativo
 1. **Página de medicamentos:** Lista os medicamentos do dia com horários e caixa de verificação para quando ele é tomado ou não.
 2. **Página de cadastro/login:** Permite o cadastro de usuários com verificações de segurança.
@@ -76,11 +50,7 @@ De acordo com as necessidades dos stakeholders, as funções essenciais do siste
 4. **Página de busca por médicos/voluntários:** Lista de médicos e voluntários disponíveis para agendamento.
 5. **Página de acompanhamentos:** Para médicos e voluntários visualizarem consultas que devem comparecer.
 6. **Página de administração:** Permite a aprovação de médicos e voluntários, além do acompanhamento do paciente.
-
-
 ### 1.4 Tecnologias e Bibliotecas Utilizadas
-
-
 O sistema será desenvolvido em duas aplicações independentes, sendo uma *mobile* e outra *web*. Ambas compartilharão a mesma API REST e estrutura de banco de dados, permitindo a integração e sincronização das informações entre as plataformas.
 - **Frontend — Aplicativo Mobile:**
   - **Flutter:** Framework utilizado para o desenvolvimento do aplicativo mobile, possibilitando sua execução em dispositivos Android e iOS.
@@ -108,17 +78,9 @@ O sistema será desenvolvido em duas aplicações independentes, sendo uma *mobi
   - **Git e GitHub:** Controle de versão e colaboração entre os integrantes.
   - **Visual Studio Code:** Editor de código utilizado no desenvolvimento.
   - **Stitch:** Ferramenta utilizada para prototipação das interfaces.
-
-
 ---
-
-
 ## 2. Requisitos do Sistema
-
-
 ### 2.1 Requisitos Funcionais (RF)
-
-
 | ID | Requisito | Descrição |
 | - | - | - |
 | **RF-01** | Gestão e Autenticação de Usuários | O sistema deve permitir o cadastro e login de usuários divididos em perfis: Idoso, Médico e Voluntário. Deve validar dados essenciais no cadastro. |
@@ -130,11 +92,7 @@ O sistema será desenvolvido em duas aplicações independentes, sendo uma *mobi
 | **RF-07** | Gestão e Solicitação de Voluntários | O sistema deve permitir que idosos solicitem acompanhamento de voluntários para consultas e que voluntários se cadastrem para prestar o suporte. |
 | **RF-08** | Painel de Agendamentos e Acompanhamentos | O sistema deve disponibilizar uma agenda centralizada onde médicos e voluntários visualizam as consultas e acompanhamentos confirmados. |
 | **RF-09** | Aprovação de médicos e voluntários | O sistema deve permitir que um usuário da classe administrador aprove ou negue um cadastro de um médico ou voluntário. |
-
-
 ### 2.2 Requisitos Não Funcionais (RNF)
-
-
 | ID | Categoria | Descrição |
 | -| - | - |
 | **RNF-01** | Usabilidade e Usabilidade Senior (UX/UI) | A interface web/mobile deve seguir diretrizes de acessibilidade (WCAG 2.1 AA), utilizando fontes em tamanho ampliado (mínimo 16px), alto contraste de cores e botões de toque com área mínima de 48x48dp. |
@@ -143,14 +101,8 @@ O sistema será desenvolvido em duas aplicações independentes, sendo uma *mobi
 | **RNF-04** | Compatibilidade Multiplataforma |O aplicativo mobile deve ser compatível com Android (a partir da versão 8.0) e iOS (a partir do iOS 14). A versão Web deve ser responsiva e funcional nos principais navegadores modernos. |
 | **RNF-05**| Suporte Offline e Notificações Push | O app mobile deve emitir alertas/notificações push locais para lembretes de medicamentos, mesmo se o dispositivo estiver sem acesso à internet. |
 | **RNF-06** | Escalabilidade e Integração | A arquitetura backend (API REST / GraphQL) deve suportar o crescimento do volume de acessos concorrentes sem perda de performance e permitir integração futura com APIs públicas de validação de CRM. |
-
-
 ---
-
-
 ## 3. Diagramas do Sistema
-
-
 ### 3.1 Diagrama de Classes UML (Padrão MVC)
 ```mermaid
 classDiagram
@@ -161,8 +113,6 @@ classDiagram
     Voluntarios -- Pacientes
     Medicos --|> Consultas
     Voluntarios --|> Acompanhamento
-
-
     class Medicos{
       -int id PK
       -varchar nome
@@ -215,31 +165,18 @@ classDiagram
         -varchar sintomas
     }
 ```
-
-
 ### 3.2 Diagrama de Casos de Uso
-
-
 ```mermaid
 flowchart TD
     A[Administrador] --> |Gerencia| H
     A --> |Gerencia| I
-
-
     C[Pacientes] -->|Agendam| F[Consultas]
     C[Pacientes] -->|Agendam| G[Acompanhamentos]
-
-
     H[Médicos] --> |Gerenciam| F[Consultas]
     I[Voluntários] --> |Gerenciam| G
 ```
-—
-
-
-
-
+---
 ## 4. Relatório de testes:
-
 **Nome do Site / Sistema:** Vitale\
 **URL / Ambiente Testado:**\
 **Versão / Build:** 1.0\
@@ -247,22 +184,20 @@ flowchart TD
 **Responsável pelos Testes:**\
 **Navegadores Testados:**\
 **Dispositivos / Resoluções:**
-
 ### 4.1 Resumo Executivo
 **Parecer Geral:** [ ] Aprovado | [ ] Aprovado com Ressalvas | [ ] Reprovado\
 **Objetivo:** Validar as funcionalidades principais, responsividade, integridade dos dados e requisitos de segurança antes da entrega ou publicação em produção.
-
 ### 4.2 Escopo dos Testes
 **Módulos Incluídos:**
 - Autenticação (Login, Logout e Expiração de Sessão)
 - Painel Inicial (Dashboard e Tela de Sintomas)
 - Gerenciamento de Cadastros (Criar, Listar, Buscar, Editar e Excluir)
 - Responsividade e Compatibilidade entre Navegadores
-
 **Fora do Escopo:**
-
 ### 4.3 Matriz de Execução de Casos de Teste
+
 ***Testes Funcionais***
+
 | ID | Módulo / Página | Cenário de Teste | Resultado Esperado | Resultado Obtido | Status |
 |-|-|-|-|-|-|
 | CT-01 | Login| Acessar com credenciais válidas| Redirecionar para o painel inicial e exibir o nome do usuário |[Descrever] | Pass / Fail|
