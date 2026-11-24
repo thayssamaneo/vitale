@@ -421,3 +421,119 @@ erDiagram
 
     MEDICAMENTO ||--o{ LEMBRETE_MEDICAMENTO : associado_a
 ```
+
+### MER
+
+```mermaid
+erDiagram
+
+    PACIENTE {
+        string nome
+        string cpf
+        string email
+        string cep
+        string senha
+    }
+
+    ADMINISTRADOR {
+        string nome
+        string cpf
+        string email
+        boolean permissao
+        string senha
+    }
+
+    MEDICO {
+        string nome
+        string foto
+        string crm
+        string biografia
+        string formacoes
+        int tempo_experiencia
+    }
+
+    VOLUNTARIO {
+        string nome
+        string foto
+        int idade
+        string cidade
+        string estado
+        string biografia
+        int tempo_experiencia
+        string idiomas
+        string genero
+    }
+
+    CONTATO_EMERGENCIA {
+        string nome
+        string telefone
+        string parentesco
+    }
+
+    SINTOMA {
+        string nome
+        string descricao
+        string regiao_corporal
+    }
+
+    AVALIACAO_SINTOMAS {
+        date data_registro
+        string gravidade
+        string descricao
+    }
+
+    ESPECIALIDADE {
+        string nome
+        string descricao
+    }
+
+    RECOMENDACAO {
+        string titulo
+        string descricao
+        string gravidade_indicada
+        string tipo_tecnica
+    }
+
+    CONSULTA {
+        string local
+        date horario
+        string status
+        string sintomas
+    }
+
+    ACOMPANHAMENTO {
+        string local
+        date horario
+    }
+
+    MEDICAMENTO {
+        string nome
+        string descricao
+    }
+
+    LEMBRETE_MEDICAMENTO {
+        string horario
+        date data_inicio
+        date data_fim
+        string observacoes
+    }
+
+    PACIENTE ||--o{ CONTATO_EMERGENCIA : possui
+    PACIENTE ||--o{ AVALIACAO_SINTOMAS : registra
+
+    AVALIACAO_SINTOMAS }o--|{ SINTOMA : contem
+
+    SINTOMA }o--o{ ESPECIALIDADE : indica
+    MEDICO }o--o{ ESPECIALIDADE : possui
+
+    AVALIACAO_SINTOMAS }o--o{ RECOMENDACAO : gera
+
+    PACIENTE ||--o{ CONSULTA : agenda
+    MEDICO ||--o{ CONSULTA : realiza
+
+    PACIENTE ||--o{ ACOMPANHAMENTO : recebe
+    VOLUNTARIO ||--o{ ACOMPANHAMENTO : realiza
+
+    PACIENTE ||--o{ LEMBRETE_MEDICAMENTO : configura
+    MEDICAMENTO ||--o{ LEMBRETE_MEDICAMENTO : associado_a
+```
