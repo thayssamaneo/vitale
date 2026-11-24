@@ -116,79 +116,17 @@ O sistema será desenvolvido em duas aplicações independentes, sendo uma *mobi
 
 
 ## 3. Diagramas do Sistema
-### 3.1 Diagrama de Classes UML (Padrão MVC)
-```mermaid
-classDiagram
-    Administradores --|> Medicos
-    Administradores --|> Pacientes
-    Administradores --|> Voluntarios
-    Medicos -- Pacientes
-    Voluntarios -- Pacientes
-    Medicos --|> Consultas
-    Voluntarios --|> Acompanhamento
-    class Medicos{
-      -int id PK
-      -varchar nome
-      -varchar foto
-      -varchar especialidade
-      -varchar crm
-      -varchar biografia
-      -varchar formacoes
-      -time tempo_experiencia
-    }
-    class Pacientes{
-      -int id
-      -varchar nome
-      -varchar cpf
-      -varchar cep
-      -varchar senha
-    }
-    class Voluntarios{
-      -int id PK
-      -varchar nome
-      -varchar foto
-      -int idade
-      -varchar cidade
-      -varchar estado
-      -varchar biografia
-      -time tempo_experiencia
-      -varchar idiomas
-      -char genero
-    }
-    class Administradores{
-        -int id
-        -varchar nome
-        -boolean permissao
-        -varchar senha
-        -varchar cpf
-    }
-    class Acompanhamento{
-        -int id PK
-        -int paciente_id FK
-        -int voluntario_id FK
-        -varchar local
-        -date horario
-    }
-    class Consultas{
-        -int id PK
-        -int paciente_id FK
-        -int medico_id FK
-        -varchar local
-        -date horario
-        -varchar sintomas
-    }
-```
-### 3.2 Diagrama de Casos de Uso
+### 3.1 Diagrama de Casos de Uso
 ```mermaid
 flowchart TD
-    A[Administrador] --> |Gerencia| H
-    A --> |Gerencia| I
-    C[Pacientes] -->|Agendam| F[Consultas]
-    C[Pacientes] -->|Agendam| G[Acompanhamentos]
-    H[Médicos] --> |Gerenciam| F[Consultas]
-    I[Voluntários] --> |Gerenciam| G
+    A[Usuarios] --> |Possui| H
+    A --> |Sinalizam| I
+    H[ContatoEmergencia] -->|Recebe| I
+    I[Sintomas] -->|Geram| B[Recomendacoes]
+    I -->|Geram| C[AvaliacaoSintomas]
 ```
-### 3.3 MER - Modelo Entidade Relacionamento
+
+### 3.2 MER - Modelo Entidade Relacionamento
 ```mermaid
 erDiagram
     USUARIO {
@@ -224,12 +162,6 @@ erDiagram
         TEXT observacoes
     }
 
-    AVALIACAO_SINTOMA {
-        INT id PK
-        INT avaliacao_id FK
-        INT sintoma_id FK
-    }
-
     RECOMENDACAO {
         INT id PK
         INT sintoma_id FK
@@ -242,10 +174,9 @@ erDiagram
     USUARIO ||--o{ CONTATO_EMERGENCIA : possui
     USUARIO ||--o{ AVALIACAO_SINTOMAS : realiza
 
-    AVALIACAO_SINTOMAS ||--|{ AVALIACAO_SINTOMA : contem
-    SINTOMA ||--o{ AVALIACAO_SINTOMA : selecionado_em
 
     SINTOMA o|--o{ RECOMENDACAO : possui
+    USUARIO ||--o{ SINTOMA : registra
 ```
 ---
 ## 4. Relatório de testes:
