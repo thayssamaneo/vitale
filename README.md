@@ -121,9 +121,11 @@ O sistema será desenvolvido em duas aplicações independentes, sendo uma *mobi
 flowchart TD
     A[Usuarios] --> |Possui| H
     A --> |Sinalizam| I
-    H[ContatoEmergencia] -->|Recebe| I
-    I[Sintomas] -->|Geram| B[Recomendacoes]
+    H[ContatoEmergencia]
+    I[Sintomas]
+    B[Recomendacoes]
     I -->|Geram| C[AvaliacaoSintomas]
+    C -->|Gera| B
 ```
 
 ### 3.2 MER - Modelo Entidade Relacionamento
