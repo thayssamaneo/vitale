@@ -10,15 +10,19 @@
 **Design inadequado às mudanças cognitivas e sensoriais:** As plataformas raramente são projetadas levando em consideração as necessidades da população idosa, apresentando elementos visuais confusos, ícones de difícil visualização, botões pequenos e excesso de termos técnicos de tecnologia ("tecniquês") que prejudicam a navegação intuitiva.
 ### 0.2   Barreiras de Linguagem e Complexidade do Conteúdo:
 **Linguagem médica técnica sem simplificação:** Muitas plataformas institucionais de saúde utilizam terminologias científicas e médicas densas (como descrições técnicas de vacinas e mecanismos de ação) sem a devida adaptação para pessoas com menor escolaridade ou baixo letramento em saúde.
+
 **Falta de resumos executivos:** Há escassez de materiais informativos formatados em linguagem simples e direta, o que limita a compreensão e a capacidade do idoso de agir de forma autônoma sobre a própria saúde.
 ### 0.3   Insegurança, Medo de Errar e Ansiedade Gerontecnológica:
 **Receio de falhas e golpes digitais:** É recorrente a hesitação dos idosos em interagir com interfaces digitais por medo de danificar o dispositivo, cometer erros de navegação ou ser vítima de fraudes e vazamento de dados pessoais.
+
 **Baixa percepção de autoeficácia:** O preconceito etário (idadismo) e a falta de suporte inicial geram uma ansiedade gerontecnológica, fazendo com que muitos idosos se sintam incapazes de aprender a manusear novos recursos e acabem abandonando as aplicações.
 ### 0.4    Dificuldade na Avaliação Crítica da Informação (Letramento Digital):
 **Vulnerabilidade à desinformação:** Devido ao baixo letramento digital em saúde, muitos idosos enfrentam grandes dificuldades para filtrar informações on-line, distinguir fontes de alta qualidade de conteúdos duvidosos e identificar fake news ou golpes.
+
 **Falta de confiança na tomada de decisões:** Mesmo quando conseguem localizar informações digitais de saúde, o nível de confiança e segurança para avaliar a precisão do conteúdo e aplicar esses dados no cuidado diário permanece significativamente baixo.
 ### 0.5  Foco Excessivo no Modelo Biomédico e Escassez de Guias Práticos:
 **Conteúdo centrado em doenças e tratamentos:** Os portais costumam focar excessivamente em um modelo curativo e biomédico (como campanhas de vacinação e gestão de morbidades crônicas), em vez de promover uma visão integral de envelhecimento ativo.
+
 **Lacunas em áreas críticas de cuidado:** Há pouca oferta de orientações práticas direcionadas ao suporte de familiares e cuidadores, além da sub-representação de temas como saúde mental e cuidados paliativos.
 ### 0.6  Homogeneização do Usuário e Exclusão Social:
 **Desconsideração das diversidades regionais e de comorbidades:** A maioria das soluções digitais adota uma abordagem genérica baseada em recomendações universais, ignorando adaptações para idosos com diferentes graus de limitação funcional, comorbidades ou pertencentes a comunidades rurais e indígenas.
