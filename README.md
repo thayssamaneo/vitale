@@ -1,4 +1,5 @@
 # Vitale - Documentação e Levantamento de Requisitos
+
 **Autores:** Maria Eduarda Correa, Rian , Thayssa Maneo  
 **Padrão Internacional:** ISO/IEC/IEEE 29148:2018
 **Versão:** 1.0.0  
@@ -7,6 +8,7 @@
 ## 0. Pesquisas - Principais problemas relacionados ao acesso de idosos a conteúdos de saúde
 ### 0.1  Interfaces Inacessíveis e Falta de Design Inclusivo (UI/UX):
 **Ausência de recursos essenciais de acessibilidade:** Diversos portais e aplicativos falham em oferecer suporte a ferramentas básicas, como audiodescrição, ajustes de contraste e leitor de tela para pessoas com deficiências visuais ou auditivas.
+
 **Design inadequado às mudanças cognitivas e sensoriais:** As plataformas raramente são projetadas levando em consideração as necessidades da população idosa, apresentando elementos visuais confusos, ícones de difícil visualização, botões pequenos e excesso de termos técnicos de tecnologia ("tecniquês") que prejudicam a navegação intuitiva.
 ### 0.2   Barreiras de Linguagem e Complexidade do Conteúdo:
 **Linguagem médica técnica sem simplificação:** Muitas plataformas institucionais de saúde utilizam terminologias científicas e médicas densas (como descrições técnicas de vacinas e mecanismos de ação) sem a devida adaptação para pessoas com menor escolaridade ou baixo letramento em saúde.
@@ -28,28 +30,34 @@
 **Desconsideração das diversidades regionais e de comorbidades:** A maioria das soluções digitais adota uma abordagem genérica baseada em recomendações universais, ignorando adaptações para idosos com diferentes graus de limitação funcional, comorbidades ou pertencentes a comunidades rurais e indígenas.
 
 **Dependência exclusiva do meio digital:** Ao focar a prestação de serviços e orientações quase exclusivamente em plataformas on-line ou aplicativos, acaba-se aprofundando a exclusão de idosos de menor renda e escolaridade que não possuem conectividade ou dispositivos adequados.
-
----
+__________________________________________________________
 ## 1. Introdução
 ### 1.1 Objetivo
 Criar uma plataforma web e um aplicativo mobile para auxiliar o público idoso a sinalizar sintomas de forma acessível e intuitiva.
 ### 1.2 Funções do Sistema
 De acordo com as necessidades dos stakeholders, as funções essenciais do sistema compreendem:
 
+
 1. **Sinalização de sintomas:**
 - O software deve permitir a sinalização de sintomas de forma simples.
 - O software deve indicar especialistas que podem ser procurados com base nos sintomas.
 
+
 2. **Contato com número de emergência:**
-- Em caso de sintomas graves em áreas vitais, o sistema deve iniciar uma ligação para o contato de emergência.
+- Em caso de sintomas graves em áreas vitais, o sistema deve iniciar uma ligação para o contato de emergência. Essa função só se aplica ao aplicativo mobile.
+
 
 3. **Recomendações para amenização de sintomas:**
 - Após a sinalização dos sintomas, o sistema deve realizar recomendações para amenização dos sintomas, como exercícios de respiração, entre outros.
+4. **Localizar paciente:**
+Após a sinalização de sintomas graves, além de ligar para o contato de emergência, o sistema enviará um sms com as coordenadas do paciente ao contato.
+
 
 ### 1.3 Páginas do Aplicativo
 1. **Página de cadastro/login:** Permite o cadastro de usuários com verificações de segurança.
 2. **Página de sinalização de sintomas:** Permite a sinalização de sintomas.
 3. **Página de recomendações:** Realiza ligações para o contato de emergência e recomendações de técnicas de auxílio inicial ao paciente.
+
 
 ### 1.4 Tecnologias e Bibliotecas Utilizadas
 O sistema será desenvolvido em duas aplicações independentes, sendo uma *mobile* e outra *web*. Ambas compartilharão a mesma API REST e estrutura de banco de dados, permitindo a integração e sincronização das informações entre as plataformas.
@@ -88,8 +96,11 @@ O sistema será desenvolvido em duas aplicações independentes, sendo uma *mobi
 | **RF-02** | Sinalização e Triagem de Sintomas | O sistema deve permitir ao usuário selecionar sintomas de forma intuitiva e sugerir automaticamente especialidades médicas indicadas com base no relato. |
 | **RF-03** | Recomendações de técnicas | O sistema deve realizar reomendações de técnicas para amenização de sintomas de acordo com a gravidade do sintoma. |
 | **RF-04** | Ligação para contato de emergência | Em caso de sintomas graves o sistema deve realizar uma ligação para o contato de emergência. |
+| **RF-05** | Localizar paciente | O sistema deve coletar a localização em tempo real do paciente e enviá-la ao contato de emergência em caso de sintomas graves. |
+
 
 ### 2.2 Requisitos Não Funcionais (RNF)
+
 
 | ID | Categoria | Descrição |
 | -| - | - |
@@ -100,7 +111,9 @@ O sistema será desenvolvido em duas aplicações independentes, sendo uma *mobi
 | **RNF-05**| Suporte Offline e Notificações Push | O app mobile deve emitir alertas/notificações push locais para lembretes de medicamentos, mesmo se o dispositivo estiver sem acesso à internet. |
 | **RNF-06** | Escalabilidade e Integração | A arquitetura backend (API REST / GraphQL) deve suportar o crescimento do volume de acessos concorrentes sem perda de performance e permitir integração futura com APIs públicas de validação de CRM. |
 
+
 ---
+
 
 ## 3. Diagramas do Sistema
 ### 3.1 Diagrama de Classes UML (Padrão MVC)
@@ -195,9 +208,12 @@ flowchart TD
 - Responsividade e Compatibilidade entre Navegadores
 **Fora do Escopo:**
 
+
 ### 4.3 Matriz de Execução de Casos de Teste
 
+
 ***Testes Funcionais***
+
 
 | ID | Módulo / Página | Cenário de Teste | Resultado Esperado | Resultado Obtido | Status |
 |-|-|-|-|-|-|
@@ -208,7 +224,9 @@ flowchart TD
 | CT-05 | Edição (Update) | Alterar dados de um registro existente | Atualizar informações no banco e refletir na tela | [Descrever] | Pass / Fail |
 | CT-06 | Exclusão (Delete) | Remover ou cancelar um registro | Solicitar confirmação e atualizar a listagem |[Descrever] | Pass / Fail |
 
+
 ***Interface, Usabilidade e Responsividade***
+
 
 | ID | Critério Avaliado | Descrição da Verificação|Observações|Status|
 |-|-|-|-|-|
@@ -217,7 +235,9 @@ flowchart TD
 |UI-03|Navegação e Links|Funcionamento de menus, botões "Voltar/Cancelar" e ausência de erro 404|[Descrever]|Pass / Fail|
 |UI-04|Feedback ao Usuário|Exibição clara de alertas de sucesso, erro e campos obrigatórios|[Descrever]|Pass / Fail|
 
+
 ***Segurança e Validação de Dados***
+
 
 |ID|Verificação|Procedimento de Teste|Resultado Esperado|Status|
 |-|-|-|-|-|
@@ -228,12 +248,15 @@ flowchart TD
 |SEC-05|Proteção CSRF|Enviar requisição POST sem token CSRF ou com token adulterado|Requisição rejeitada pelo servidor|Pass / Fail|
 |SEC-06|Dados Sensíveis (LGPD)|Verificar armazenamento de senhas e documentos sensíveis no banco|Senhas com hash seguro e dados sensíveis criptografados|Pass / Fail|
 
+
 *Registro de Bugs e Não Conformidades*
+
 
 |ID Bug|Caso Relacionado|Título / Descrição do Problema|Passos para Reproduzir|Severidade|Evidência|Status|
 |-|-|-|-|-|-|-|
 |BUG-01|[Ex.: UI-02]|[Ex.: Tabela ultrapassa a largura da tela no celular]|[1. Abrir /agendamentos; 2. Reduzir tela para 375px]|Média|[Link/Print]|Aberto|
 |BUG-02|[Ex.: CT-04]|[Ex.: Erro ao salvar data em branco]|[1. Abrir formulário; 2. Deixar campo vazio; 3. Salvar]|Alta|[Link/Print]|Corrigido|
+
 
 > **Legenda de Severidade:**\
 **Crítica:** Impede o uso do sistema, causa perda de dados ou falha grave de segurança.\
@@ -241,299 +264,8 @@ flowchart TD
 **Média:** Falha parcial que afeta a experiência, mas permite continuar usando o sistema.\
 **Baixa:** Ajuste visual, ortográfico ou melhoria estética pontual.\
 
+
 ### Recomendações e Aprovação
 
+
 **Pontos de Melhoria / Observações Técnicas:**
-
-### DER
-
-```mermaid
-erDiagram
-
-    PACIENTE {
-        int id PK
-        varchar nome
-        varchar cpf UK
-        varchar email UK
-        varchar cep
-        varchar senha_hash
-    }
-
-    ADMINISTRADOR {
-        int id PK
-        varchar nome
-        varchar cpf UK
-        varchar email UK
-        varchar senha_hash
-        boolean permissao
-    }
-
-    MEDICO {
-        int id PK
-        varchar nome
-        varchar foto
-        varchar crm UK
-        varchar biografia
-        varchar formacoes
-        int tempo_experiencia
-    }
-
-    VOLUNTARIO {
-        int id PK
-        varchar nome
-        varchar foto
-        int idade
-        varchar cidade
-        varchar estado
-        varchar biografia
-        int tempo_experiencia
-        varchar idiomas
-        char genero
-    }
-
-    CONTATO_EMERGENCIA {
-        int id PK
-        int paciente_id FK
-        varchar nome
-        varchar telefone
-        varchar parentesco
-    }
-
-    SINTOMA {
-        int id PK
-        varchar nome
-        varchar descricao
-        varchar regiao_corporal
-    }
-
-    AVALIACAO_SINTOMAS {
-        int id PK
-        int paciente_id FK
-        datetime data_registro
-        varchar gravidade
-        varchar descricao
-    }
-
-    AVALIACAO_SINTOMA {
-        int id PK
-        int avaliacao_id FK
-        int sintoma_id FK
-    }
-
-    ESPECIALIDADE {
-        int id PK
-        varchar nome
-        varchar descricao
-    }
-
-    MEDICO_ESPECIALIDADE {
-        int id PK
-        int medico_id FK
-        int especialidade_id FK
-    }
-
-    SINTOMA_ESPECIALIDADE {
-        int id PK
-        int sintoma_id FK
-        int especialidade_id FK
-    }
-
-    RECOMENDACAO {
-        int id PK
-        varchar titulo
-        text descricao
-        varchar gravidade_indicada
-        varchar tipo_tecnica
-    }
-
-    AVALIACAO_RECOMENDACAO {
-        int id PK
-        int avaliacao_id FK
-        int recomendacao_id FK
-    }
-
-    CONSULTA {
-        int id PK
-        int paciente_id FK
-        int medico_id FK
-        int avaliacao_id FK
-        varchar local
-        datetime horario
-        varchar status
-        varchar sintomas
-    }
-
-    ACOMPANHAMENTO {
-        int id PK
-        int paciente_id FK
-        int voluntario_id FK
-        varchar local
-        datetime horario
-    }
-
-    MEDICAMENTO {
-        int id PK
-        varchar nome
-        varchar descricao
-    }
-
-    LEMBRETE_MEDICAMENTO {
-        int id PK
-        int paciente_id FK
-        int medicamento_id FK
-        time horario
-        date data_inicio
-        date data_fim
-        varchar observacoes
-    }
-
-    PACIENTE ||--o{ CONTATO_EMERGENCIA : possui
-
-    PACIENTE ||--o{ AVALIACAO_SINTOMAS : registra
-
-    AVALIACAO_SINTOMAS ||--|{ AVALIACAO_SINTOMA : contem
-
-    SINTOMA ||--o{ AVALIACAO_SINTOMA : selecionado_em
-
-    SINTOMA ||--o{ SINTOMA_ESPECIALIDADE : relacionado_a
-
-    ESPECIALIDADE ||--o{ SINTOMA_ESPECIALIDADE : indicada_para
-
-    MEDICO ||--o{ MEDICO_ESPECIALIDADE : possui
-
-    ESPECIALIDADE ||--o{ MEDICO_ESPECIALIDADE : classifica
-
-    AVALIACAO_SINTOMAS ||--o{ AVALIACAO_RECOMENDACAO : gera
-
-    RECOMENDACAO ||--o{ AVALIACAO_RECOMENDACAO : recomendada_em
-
-    PACIENTE ||--o{ CONSULTA : agenda
-
-    MEDICO ||--o{ CONSULTA : realiza
-
-    AVALIACAO_SINTOMAS o|--o{ CONSULTA : origina
-
-    PACIENTE ||--o{ ACOMPANHAMENTO : recebe
-
-    VOLUNTARIO ||--o{ ACOMPANHAMENTO : realiza
-
-    PACIENTE ||--o{ LEMBRETE_MEDICAMENTO : configura
-
-    MEDICAMENTO ||--o{ LEMBRETE_MEDICAMENTO : associado_a
-```
-
-### MER
-
-```mermaid
-erDiagram
-
-    PACIENTE {
-        string nome
-        string cpf
-        string email
-        string cep
-        string senha
-    }
-
-    ADMINISTRADOR {
-        string nome
-        string cpf
-        string email
-        boolean permissao
-        string senha
-    }
-
-    MEDICO {
-        string nome
-        string foto
-        string crm
-        string biografia
-        string formacoes
-        int tempo_experiencia
-    }
-
-    VOLUNTARIO {
-        string nome
-        string foto
-        int idade
-        string cidade
-        string estado
-        string biografia
-        int tempo_experiencia
-        string idiomas
-        string genero
-    }
-
-    CONTATO_EMERGENCIA {
-        string nome
-        string telefone
-        string parentesco
-    }
-
-    SINTOMA {
-        string nome
-        string descricao
-        string regiao_corporal
-    }
-
-    AVALIACAO_SINTOMAS {
-        date data_registro
-        string gravidade
-        string descricao
-    }
-
-    ESPECIALIDADE {
-        string nome
-        string descricao
-    }
-
-    RECOMENDACAO {
-        string titulo
-        string descricao
-        string gravidade_indicada
-        string tipo_tecnica
-    }
-
-    CONSULTA {
-        string local
-        date horario
-        string status
-        string sintomas
-    }
-
-    ACOMPANHAMENTO {
-        string local
-        date horario
-    }
-
-    MEDICAMENTO {
-        string nome
-        string descricao
-    }
-
-    LEMBRETE_MEDICAMENTO {
-        string horario
-        date data_inicio
-        date data_fim
-        string observacoes
-    }
-
-    PACIENTE ||--o{ CONTATO_EMERGENCIA : possui
-    PACIENTE ||--o{ AVALIACAO_SINTOMAS : registra
-
-    AVALIACAO_SINTOMAS }o--|{ SINTOMA : contem
-
-    SINTOMA }o--o{ ESPECIALIDADE : indica
-    MEDICO }o--o{ ESPECIALIDADE : possui
-
-    AVALIACAO_SINTOMAS }o--o{ RECOMENDACAO : gera
-
-    PACIENTE ||--o{ CONSULTA : agenda
-    MEDICO ||--o{ CONSULTA : realiza
-
-    PACIENTE ||--o{ ACOMPANHAMENTO : recebe
-    VOLUNTARIO ||--o{ ACOMPANHAMENTO : realiza
-
-    PACIENTE ||--o{ LEMBRETE_MEDICAMENTO : configura
-    MEDICAMENTO ||--o{ LEMBRETE_MEDICAMENTO : associado_a
-```
