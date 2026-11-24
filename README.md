@@ -1,12 +1,9 @@
 # Vitale - Documentação e Levantamento de Requisitos
-
 **Autores:** Maria Eduarda Correa, Rian , Thayssa Maneo  
 **Padrão Internacional:** ISO/IEC/IEEE 29148:2018
 **Versão:** 1.0.0  
 **Data:** 05/11/2026
-
 ---
-
 ## 0. Pesquisas - Principais problemas relacionados ao acesso de idosos a conteúdos de saúde
 ### 0.1  Interfaces Inacessíveis e Falta de Design Inclusivo (UI/UX):
 **Ausência de recursos essenciais de acessibilidade:** Diversos portais e aplicativos falham em oferecer suporte a ferramentas básicas, como audiodescrição, ajustes de contraste e leitor de tela para pessoas com deficiências visuais ou auditivas.
@@ -32,24 +29,22 @@ __________________________________________________________
 Criar uma plataforma web e um aplicativo mobile para auxiliar o público idoso a sinalizar sintomas de forma acessível e intuitiva.
 ### 1.2 Funções do Sistema
 De acordo com as necessidades dos stakeholders, as funções essenciais do sistema compreendem:
-1. **Registro de medicamentos:**
-- O software deve permitir o registro de um novo medicamento com as informações necessárias.
-2. **Sinalização de sintomas:**
+
+1. **Sinalização de sintomas:**
 - O software deve permitir a sinalização de sintomas de forma simples.
 - O software deve indicar especialistas que podem ser procurados com base nos sintomas.
-3. **Encontrar médicos:**
-- O software deve encontrar especialistas na região com seu local de atendimento e meio de agendamento.
-- O software deve permitir o cadastro de médicos e validar o cadastro de acordo com o crm.
-4. **Encontrar voluntários:**
-- O software deve encontrar voluntários para acompanhamento em consultas.
-- O software deve permitir o cadastro de voluntários para o acompanhamento em consultas.
+
+2. **Contato com número de emergência:**
+- Em caso de sintomas graves em áreas vitais, o sistema deve iniciar uma ligação para o contato de emergência.
+
+3. **Recomendações para amenização de sintomas:**
+- Após a sinalização dos sintomas, o sistema deve realizar recomendações para amenização dos sintomas, como exercícios de respiração, entre outros.
+
 ### 1.3 Páginas do Aplicativo
-1. **Página de medicamentos:** Lista os medicamentos do dia com horários e caixa de verificação para quando ele é tomado ou não.
-2. **Página de cadastro/login:** Permite o cadastro de usuários com verificações de segurança.
-3. **Página de sinalização de sintomas:** Permite a sinalização de sintomas.
-4. **Página de busca por médicos/voluntários:** Lista de médicos e voluntários disponíveis para agendamento.
-5. **Página de acompanhamentos:** Para médicos e voluntários visualizarem consultas que devem comparecer.
-6. **Página de administração:** Permite a aprovação de médicos e voluntários, além do acompanhamento do paciente.
+1. **Página de cadastro/login:** Permite o cadastro de usuários com verificações de segurança.
+2. **Página de sinalização de sintomas:** Permite a sinalização de sintomas.
+3. **Página de recomendações:** Realiza ligações para o contato de emergência e recomendações de técnicas de auxílio inicial ao paciente.
+
 ### 1.4 Tecnologias e Bibliotecas Utilizadas
 O sistema será desenvolvido em duas aplicações independentes, sendo uma *mobile* e outra *web*. Ambas compartilharão a mesma API REST e estrutura de banco de dados, permitindo a integração e sincronização das informações entre as plataformas.
 - **Frontend — Aplicativo Mobile:**
@@ -83,16 +78,13 @@ O sistema será desenvolvido em duas aplicações independentes, sendo uma *mobi
 ### 2.1 Requisitos Funcionais (RF)
 | ID | Requisito | Descrição |
 | - | - | - |
-| **RF-01** | Gestão e Autenticação de Usuários | O sistema deve permitir o cadastro e login de usuários divididos em perfis: Idoso, Médico e Voluntário. Deve validar dados essenciais no cadastro. |
-| **RF-02** | Validação de CRM para Médicos | O sistema deve validar obrigatoriamente o registro do CRM do médico junto aos dados do conselho profissional antes de ativar a conta na plataforma. |
-| **RF-03** | Gerenciamento de Medicamentos | O sistema deve permitir cadastrar, editar e remover medicamentos com nome, dosagem, frequência, horário e alarmes/notificações de lembrete. |
-| **RF-04** |Registro de Presença e Check-in de Medicação | O sistema deve exibir a lista de remédios do dia com horário e fornecer uma caixa de verificação para o idoso sinalizar o consumo (tomou / não tomou).|
-| **RF-05** | Sinalização e Triagem de Sintomas | O sistema deve permitir ao usuário selecionar sintomas de forma intuitiva e sugerir automaticamente especialidades médicas indicadas com base no relato. |
-| **RF-06** | Busca e Filtro de Médicos na Região | O sistema deve buscar médicos cadastrados e validados por localização/geolocalização, exibindo endereço de atendimento, contatos e links para agendamento. |
-| **RF-07** | Gestão e Solicitação de Voluntários | O sistema deve permitir que idosos solicitem acompanhamento de voluntários para consultas e que voluntários se cadastrem para prestar o suporte. |
-| **RF-08** | Painel de Agendamentos e Acompanhamentos | O sistema deve disponibilizar uma agenda centralizada onde médicos e voluntários visualizam as consultas e acompanhamentos confirmados. |
-| **RF-09** | Aprovação de médicos e voluntários | O sistema deve permitir que um usuário da classe administrador aprove ou negue um cadastro de um médico ou voluntário. |
+| **RF-01** | Gestão e Autenticação de Usuários | O sistema deve permitir o cadastro e login de usuários. Deve validar dados essenciais no cadastro. |
+| **RF-02** | Sinalização e Triagem de Sintomas | O sistema deve permitir ao usuário selecionar sintomas de forma intuitiva e sugerir automaticamente especialidades médicas indicadas com base no relato. |
+| **RF-03** | Recomendações de técnicas | O sistema deve realizar reomendações de técnicas para amenização de sintomas de acordo com a gravidade do sintoma. |
+| **RF-04** | Ligação para contato de emergência | Em caso de sintomas graves o sistema deve realizar uma ligação para o contato de emergência. |
+
 ### 2.2 Requisitos Não Funcionais (RNF)
+
 | ID | Categoria | Descrição |
 | -| - | - |
 | **RNF-01** | Usabilidade e Usabilidade Senior (UX/UI) | A interface web/mobile deve seguir diretrizes de acessibilidade (WCAG 2.1 AA), utilizando fontes em tamanho ampliado (mínimo 16px), alto contraste de cores e botões de toque com área mínima de 48x48dp. |
@@ -101,7 +93,9 @@ O sistema será desenvolvido em duas aplicações independentes, sendo uma *mobi
 | **RNF-04** | Compatibilidade Multiplataforma |O aplicativo mobile deve ser compatível com Android (a partir da versão 8.0) e iOS (a partir do iOS 14). A versão Web deve ser responsiva e funcional nos principais navegadores modernos. |
 | **RNF-05**| Suporte Offline e Notificações Push | O app mobile deve emitir alertas/notificações push locais para lembretes de medicamentos, mesmo se o dispositivo estiver sem acesso à internet. |
 | **RNF-06** | Escalabilidade e Integração | A arquitetura backend (API REST / GraphQL) deve suportar o crescimento do volume de acessos concorrentes sem perda de performance e permitir integração futura com APIs públicas de validação de CRM. |
+
 ---
+
 ## 3. Diagramas do Sistema
 ### 3.1 Diagrama de Classes UML (Padrão MVC)
 ```mermaid
@@ -175,7 +169,7 @@ flowchart TD
     H[Médicos] --> |Gerenciam| F[Consultas]
     I[Voluntários] --> |Gerenciam| G
 ```
----
+—--
 ## 4. Relatório de testes:
 **Nome do Site / Sistema:** Vitale\
 **URL / Ambiente Testado:**\
@@ -194,6 +188,7 @@ flowchart TD
 - Gerenciamento de Cadastros (Criar, Listar, Buscar, Editar e Excluir)
 - Responsividade e Compatibilidade entre Navegadores
 **Fora do Escopo:**
+
 ### 4.3 Matriz de Execução de Casos de Teste
 
 ***Testes Funcionais***
@@ -202,11 +197,10 @@ flowchart TD
 |-|-|-|-|-|-|
 | CT-01 | Login| Acessar com credenciais válidas| Redirecionar para o painel inicial e exibir o nome do usuário |[Descrever] | Pass / Fail|
 | CT-02 | Login | Acessar com e-mail ou senha inválidos | Bloquear acesso e exibir mensagem de erro clara |[Descrever] | Pass / Fail|
-| CT-03| Sessão| Permanecer inativo além do tempo limite | Encerrar sessão automaticamente e redirecionar ao login |[Descrever]| Pass / Fail |
-| CT-04 | Cadastro (Create) | Preencher formulário válido e salvar | Registrar no banco de dados e exibir na listagem | [Descrever] | Pass / Fail|
-| CT-05 | Listagem / Busca | Pesquisar registro por termo existente e inexistente | Filtrar resultados corretamente ou informar lista vazia | [Descrever] | Pass / Fail |
-| CT-06 | Edição (Update) | Alterar dados de um registro existente | Atualizar informações no banco e refletir na tela | [Descrever] | Pass / Fail |
-| CT-07 | Exclusão (Delete) | Remover ou cancelar um registro | Solicitar confirmação e atualizar a listagem |[Descrever] | Pass / Fail |
+| CT-03 | Cadastro (Create) | Preencher formulário válido e salvar | Registrar no banco de dados e exibir na listagem | [Descrever] | Pass / Fail|
+| CT-04 | Listagem / Busca | Pesquisar registro por termo existente e inexistente | Filtrar resultados corretamente ou informar lista vazia | [Descrever] | Pass / Fail |
+| CT-05 | Edição (Update) | Alterar dados de um registro existente | Atualizar informações no banco e refletir na tela | [Descrever] | Pass / Fail |
+| CT-06 | Exclusão (Delete) | Remover ou cancelar um registro | Solicitar confirmação e atualizar a listagem |[Descrever] | Pass / Fail |
 
 ***Interface, Usabilidade e Responsividade***
 
