@@ -188,6 +188,65 @@ flowchart TD
     H[Médicos] --> |Gerenciam| F[Consultas]
     I[Voluntários] --> |Gerenciam| G
 ```
+### 3.3 MER - Modelo Entidade Relacionamento
+```mermaid
+erDiagram
+    USUARIO {
+        INT id PK
+        VARCHAR nome
+        VARCHAR email UK
+        VARCHAR senha_hash
+        TIMESTAMP data_cadastro
+    }
+
+    CONTATO_EMERGENCIA {
+        INT id PK
+        INT usuario_id FK
+        VARCHAR nome
+        VARCHAR telefone
+        VARCHAR parentesco
+        BOOLEAN principal
+    }
+
+    SINTOMA {
+        INT id PK
+        VARCHAR nome
+        TEXT descricao
+        VARCHAR regiao_corporal
+        BOOLEAN area_vital
+    }
+
+    AVALIACAO_SINTOMAS {
+        INT id PK
+        INT usuario_id FK
+        TIMESTAMP data_hora
+        VARCHAR gravidade
+        TEXT observacoes
+    }
+
+    AVALIACAO_SINTOMA {
+        INT id PK
+        INT avaliacao_id FK
+        INT sintoma_id FK
+    }
+
+    RECOMENDACAO {
+        INT id PK
+        INT sintoma_id FK
+        VARCHAR gravidade_alvo
+        VARCHAR titulo
+        TEXT descricao
+        VARCHAR tipo
+    }
+
+    USUARIO ||--o{ CONTATO_EMERGENCIA : possui
+    USUARIO ||--o{ AVALIACAO_SINTOMAS : realiza
+
+    AVALIACAO_SINTOMAS ||--|{ AVALIACAO_SINTOMA : contem
+    SINTOMA ||--o{ AVALIACAO_SINTOMA : selecionado_em
+
+    SINTOMA o|--o{ RECOMENDACAO : possui
+```
 ---
 ## 4. Relatório de testes:
 **Nome do Site / Sistema:** Vitale\
