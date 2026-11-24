@@ -23,6 +23,7 @@
 ### 0.6  Homogeneização do Usuário e Exclusão Social:
 **Desconsideração das diversidades regionais e de comorbidades:** A maioria das soluções digitais adota uma abordagem genérica baseada em recomendações universais, ignorando adaptações para idosos com diferentes graus de limitação funcional, comorbidades ou pertencentes a comunidades rurais e indígenas.
 **Dependência exclusiva do meio digital:** Ao focar a prestação de serviços e orientações quase exclusivamente em plataformas on-line ou aplicativos, acaba-se aprofundando a exclusão de idosos de menor renda e escolaridade que não possuem conectividade ou dispositivos adequados.
+
 ---
 ## 1. Introdução
 ### 1.1 Objetivo
