@@ -244,3 +244,180 @@ flowchart TD
 ### Recomendações e Aprovação
 
 **Pontos de Melhoria / Observações Técnicas:**
+
+### DER
+
+```mermaid
+erDiagram
+
+    PACIENTE {
+        int id PK
+        varchar nome
+        varchar cpf UK
+        varchar email UK
+        varchar cep
+        varchar senha_hash
+    }
+
+    ADMINISTRADOR {
+        int id PK
+        varchar nome
+        varchar cpf UK
+        varchar email UK
+        varchar senha_hash
+        boolean permissao
+    }
+
+    MEDICO {
+        int id PK
+        varchar nome
+        varchar foto
+        varchar crm UK
+        varchar biografia
+        varchar formacoes
+        int tempo_experiencia
+    }
+
+    VOLUNTARIO {
+        int id PK
+        varchar nome
+        varchar foto
+        int idade
+        varchar cidade
+        varchar estado
+        varchar biografia
+        int tempo_experiencia
+        varchar idiomas
+        char genero
+    }
+
+    CONTATO_EMERGENCIA {
+        int id PK
+        int paciente_id FK
+        varchar nome
+        varchar telefone
+        varchar parentesco
+    }
+
+    SINTOMA {
+        int id PK
+        varchar nome
+        varchar descricao
+        varchar regiao_corporal
+    }
+
+    AVALIACAO_SINTOMAS {
+        int id PK
+        int paciente_id FK
+        datetime data_registro
+        varchar gravidade
+        varchar descricao
+    }
+
+    AVALIACAO_SINTOMA {
+        int id PK
+        int avaliacao_id FK
+        int sintoma_id FK
+    }
+
+    ESPECIALIDADE {
+        int id PK
+        varchar nome
+        varchar descricao
+    }
+
+    MEDICO_ESPECIALIDADE {
+        int id PK
+        int medico_id FK
+        int especialidade_id FK
+    }
+
+    SINTOMA_ESPECIALIDADE {
+        int id PK
+        int sintoma_id FK
+        int especialidade_id FK
+    }
+
+    RECOMENDACAO {
+        int id PK
+        varchar titulo
+        text descricao
+        varchar gravidade_indicada
+        varchar tipo_tecnica
+    }
+
+    AVALIACAO_RECOMENDACAO {
+        int id PK
+        int avaliacao_id FK
+        int recomendacao_id FK
+    }
+
+    CONSULTA {
+        int id PK
+        int paciente_id FK
+        int medico_id FK
+        int avaliacao_id FK
+        varchar local
+        datetime horario
+        varchar status
+        varchar sintomas
+    }
+
+    ACOMPANHAMENTO {
+        int id PK
+        int paciente_id FK
+        int voluntario_id FK
+        varchar local
+        datetime horario
+    }
+
+    MEDICAMENTO {
+        int id PK
+        varchar nome
+        varchar descricao
+    }
+
+    LEMBRETE_MEDICAMENTO {
+        int id PK
+        int paciente_id FK
+        int medicamento_id FK
+        time horario
+        date data_inicio
+        date data_fim
+        varchar observacoes
+    }
+
+    PACIENTE ||--o{ CONTATO_EMERGENCIA : possui
+
+    PACIENTE ||--o{ AVALIACAO_SINTOMAS : registra
+
+    AVALIACAO_SINTOMAS ||--|{ AVALIACAO_SINTOMA : contem
+
+    SINTOMA ||--o{ AVALIACAO_SINTOMA : selecionado_em
+
+    SINTOMA ||--o{ SINTOMA_ESPECIALIDADE : relacionado_a
+
+    ESPECIALIDADE ||--o{ SINTOMA_ESPECIALIDADE : indicada_para
+
+    MEDICO ||--o{ MEDICO_ESPECIALIDADE : possui
+
+    ESPECIALIDADE ||--o{ MEDICO_ESPECIALIDADE : classifica
+
+    AVALIACAO_SINTOMAS ||--o{ AVALIACAO_RECOMENDACAO : gera
+
+    RECOMENDACAO ||--o{ AVALIACAO_RECOMENDACAO : recomendada_em
+
+    PACIENTE ||--o{ CONSULTA : agenda
+
+    MEDICO ||--o{ CONSULTA : realiza
+
+    AVALIACAO_SINTOMAS o|--o{ CONSULTA : origina
+
+    PACIENTE ||--o{ ACOMPANHAMENTO : recebe
+
+    VOLUNTARIO ||--o{ ACOMPANHAMENTO : realiza
+
+    PACIENTE ||--o{ LEMBRETE_MEDICAMENTO : configura
+
+    MEDICAMENTO ||--o{ LEMBRETE_MEDICAMENTO : associado_a
+```
