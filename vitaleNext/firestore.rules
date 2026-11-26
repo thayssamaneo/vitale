@@ -1,0 +1,69 @@
+rules_version = '2';
+
+// Regras de segurança do Cloud Firestore para a Plataforma Vitale
+// Conformidade com LGPD para dados sensíveis de saúde:
+// - Usuários autenticados acessam apenas seus próprios documentos em `users` e `avaliacoes_sintomas`.
+// - Coleções de catálogo médico (`especialidades`, `sintomas`, `recomendacoes`) são somente leitura para usuários autenticados.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Verifica se o usuário está autenticado via Firebase Auth
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Verifica se o usuário autenticado é o proprietário do recurso
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Coleção `users`: documento identificado pelo UID do usuário
+    match /users/{userId} {
+      allow read: if isOwner(userId);
+      allow create: if isOwner(userId)
+        && request.resource.data.nome is string
+        && request.resource.data.email is string
+        && request.resource.data.contatos_emergencia is list;
+      allow update: if isOwner(userId)
+        && request.resource.data.nome is string
+        && request.resource.data.email == resource.data.email
+        && request.resource.data.contatos_emergencia is list;
+      allow delete: if false;
+    }
+
+    // Coleção `avaliacoes_sintomas`: triagens vinculadas ao UID do usuário
+    match /avaliacoes_sintomas/{avaliacaoId} {
+      allow read: if isAuthenticated() && resource.data.usuario_id == request.auth.uid;
+      allow create: if isAuthenticated()
+        && request.resource.data.usuario_id == request.auth.uid
+        && request.resource.data.sintomas_selecionados is list
+        && request.resource.data.sintomas_selecionados.size() > 0
+        && request.resource.data.gravidade_geral in ['leve', 'moderada', 'grave']
+        && request.resource.data.emergencia_acionada is bool;
+      allow update: if isAuthenticated()
+        && resource.data.usuario_id == request.auth.uid
+        && request.resource.data.usuario_id == request.auth.uid;
+      allow delete: if isAuthenticated() && resource.data.usuario_id == request.auth.uid;
+    }
+
+    // Coleções de conhecimento clínico: somente leitura para usuários autenticados
+    match /especialidades/{especialidadeId} {
+      allow read: if isAuthenticated();
+      allow write: if false;
+    }
+
+    match /sintomas/{sintomaId} {
+      allow read: if isAuthenticated();
+      allow write: if false;
+    }
+
+    match /recomendacoes/{recomendacaoId} {
+      allow read: if isAuthenticated();
+      allow write: if false;
+    }
+
+    // Bloqueia qualquer outra coleção não mapeada
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
