@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "882455064065",
+    "project_id": "vitale-b5e74",
+    "storage_bucket": "vitale-b5e74.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:882455064065:android:4b641cd96dd1eca6dd5a00",
+        "android_client_info": {
+          "package_name": "com.example.vitaleflutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "882455064065-md9jqcv73fnc93j19qjn496hu6nlthh1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAM9NDttoE0Vj692y7A7ZeOb6f2b9vgjK0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "882455064065-md9jqcv73fnc93j19qjn496hu6nlthh1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
