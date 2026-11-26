@@ -305,12 +305,14 @@ export default function SintomasPage() {
                         className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
                           selecionada
                             ? 'bg-primary text-on-primary'
-                            : 'bg-surface-container-high text-transparent border border-outline-variant'
+                            : 'bg-surface-container-high border border-outline-variant'
                         }`}
                       >
-                        <span className="material-symbols-outlined text-[24px] font-bold">
-                          check
-                        </span>
+                        {selecionada && (
+                          <span className="material-symbols-outlined text-[24px]">
+                            check
+                          </span>
+                        )}
                       </span>
                     </button>
                   );
@@ -389,12 +391,14 @@ export default function SintomasPage() {
                           className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 mt-0.5 transition-colors ${
                             marcado
                               ? 'bg-primary text-on-primary'
-                              : 'bg-surface-container-lowest border-2 border-outline text-transparent'
+                              : 'bg-surface-container-lowest border-2 border-outline'
                           }`}
                         >
-                          <span className="material-symbols-outlined text-[22px] font-bold">
-                            check
-                          </span>
+                          {marcado && (
+                            <span className="material-symbols-outlined text-[22px]">
+                              check
+                            </span>
+                          )}
                         </span>
                       </button>
                     );
@@ -488,10 +492,12 @@ export default function SintomasPage() {
                               ? ehGrave
                                 ? 'border-secondary bg-secondary text-on-secondary'
                                 : 'border-primary bg-primary text-on-primary'
-                              : 'border-outline bg-surface-container-lowest text-transparent'
+                              : 'border-outline bg-surface-container-lowest'
                           }`}
                         >
-                          <span className="material-symbols-outlined text-[18px]">check</span>
+                          {selecionada && (
+                            <span className="material-symbols-outlined text-[18px]">check</span>
+                          )}
                         </span>
                       </div>
                       <p className="text-[16px] leading-[24px] text-on-surface-variant">

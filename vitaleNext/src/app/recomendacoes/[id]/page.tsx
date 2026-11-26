@@ -41,6 +41,44 @@ const LABEL_GRAVIDADE: Record<Gravidade, { texto: string; classe: string }> = {
   },
 };
 
+function getIconeRecomendacao(tipo: string): string {
+  switch (tipo) {
+    case 'hidratacao':
+      return 'water_drop';
+    case 'urgencia':
+      return 'emergency';
+    case 'repouso':
+      return 'bedtime';
+    case 'respiracao':
+      return 'air';
+    case 'postura':
+      return 'accessibility_new';
+    case 'observacao':
+      return 'visibility';
+    default:
+      return 'health_and_safety';
+  }
+}
+
+function getLabelRecomendacao(tipo: string): string {
+  switch (tipo) {
+    case 'hidratacao':
+      return 'Hidratação';
+    case 'urgencia':
+      return 'Atenção';
+    case 'repouso':
+      return 'Repouso';
+    case 'respiracao':
+      return 'Respiração';
+    case 'postura':
+      return 'Postura';
+    case 'observacao':
+      return 'Observação';
+    default:
+      return 'Cuidado';
+  }
+}
+
 // TelaRecomendacoes: Exibe resumo, especialidades indicadas, técnicas de amenização e Alerta Crítico
 function RecomendacoesContent() {
   const params = useParams<{ id: string }>();
@@ -532,17 +570,11 @@ function RecomendacoesContent() {
                                 className="material-symbols-outlined text-[26px]"
                                 aria-hidden="true"
                               >
-                                {rec.tipo === 'hidratacao'
-                                  ? 'water_drop'
-                                  : rec.tipo === 'urgencia'
-                                    ? 'emergency_home'
-                                    : rec.tipo === 'repouso'
-                                      ? 'bedtime'
-                                      : 'chair'}
+                                {getIconeRecomendacao(rec.tipo)}
                               </span>
                             </div>
-                            <span className="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant text-[16px] font-semibold capitalize">
-                              {rec.tipo}
+                            <span className="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant text-[16px] font-semibold">
+                              {getLabelRecomendacao(rec.tipo)}
                             </span>
                           </div>
 
