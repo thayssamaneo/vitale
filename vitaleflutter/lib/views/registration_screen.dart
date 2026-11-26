@@ -1,12 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 
 import '../app/app_routes.dart';
+import '../controllers/auth_controller.dart';
 import '../controllers/registration_controller.dart';
 import 'widgets/vitale_brand.dart';
 
 class RegistrationScreen extends StatefulWidget {
-  const RegistrationScreen({super.key});
+  const RegistrationScreen({this.initialEmail, super.key});
+
+  final String? initialEmail;
 
   @override
   State<RegistrationScreen> createState() => _RegistrationScreenState();
@@ -15,20 +19,32 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
   final _formKey = GlobalKey<FormState>();
   final _controller = RegistrationController();
+  final _authController = AuthController();
   final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
   final _contactNameController = TextEditingController();
   final _phoneController = TextEditingController();
   String _relationship = 'Filha(o)';
+  bool _isSubmitting = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _emailController.text = widget.initialEmail ?? '';
+  }
 
   @override
   void dispose() {
     _nameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
     _contactNameController.dispose();
     _phoneController.dispose();
     super.dispose();
   }
 
-  void _continue() {
+  Future<void> _register() async {
     if (!_formKey.currentState!.validate()) {
       return;
     }
@@ -40,7 +56,43 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       relationship: _relationship,
     );
 
-    Navigator.pushNamed(context, AppRoutes.symptoms, arguments: profile);
+    setState(() => _isSubmitting = true);
+    try {
+      await _authController.register(
+        email: _emailController.text,
+        password: _passwordController.text,
+        profile: profile,
+      );
+      if (!mounted) {
+        return;
+      }
+
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        AppRoutes.symptoms,
+        (route) => false,
+        arguments: profile,
+      );
+    } on FirebaseAuthException catch (error) {
+      _showMessage(authErrorMessage(error));
+    } on FirebaseException catch (error) {
+      _showMessage(
+        'A conta foi autenticada, mas o perfil não foi salvo '
+        '(erro: ${error.code}). Verifique a conexão e as regras do Firestore '
+        'e tente novamente.',
+      );
+    } on StateError catch (error) {
+      _showMessage(error.message);
+    } finally {
+      if (mounted) {
+        setState(() => _isSubmitting = false);
+      }
+    }
+  }
+
+  void _showMessage(String message) {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
   }
 
   @override
@@ -95,7 +147,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       ),
                       const SizedBox(height: 6),
                       const Text(
-                        'Protótipo: as informações ficam somente nesta sessão.',
+                        'Sua conta será protegida pelo Firebase Authentication.',
                         style: TextStyle(color: Color(0xFF625D59)),
                       ),
                       const SizedBox(height: 20),
@@ -105,6 +157,26 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         hint: 'Como podemos chamar você?',
                         icon: Icons.person_outline,
                         validator: _controller.validateName,
+                      ),
+                      const SizedBox(height: 16),
+                      _buildTextField(
+                        controller: _emailController,
+                        label: 'E-mail',
+                        hint: 'seu@email.com',
+                        icon: Icons.email_outlined,
+                        keyboardType: TextInputType.emailAddress,
+                        validator: _controller.validateEmail,
+                        autofillHints: const [AutofillHints.newUsername],
+                      ),
+                      const SizedBox(height: 16),
+                      _buildTextField(
+                        controller: _passwordController,
+                        label: 'Senha',
+                        hint: 'Pelo menos 8 caracteres',
+                        icon: Icons.lock_outline,
+                        validator: _controller.validatePassword,
+                        obscureText: true,
+                        autofillHints: const [AutofillHints.newPassword],
                       ),
                       const SizedBox(height: 16),
                       _buildTextField(
@@ -165,9 +237,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       ),
                       const SizedBox(height: 22),
                       FilledButton.icon(
-                        onPressed: _continue,
-                        icon: const Icon(Icons.arrow_forward),
-                        label: const Text('Continuar'),
+                        onPressed: _isSubmitting ? null : _register,
+                        icon: _isSubmitting
+                            ? const SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  color: Colors.white,
+                                ),
+                              )
+                            : const Icon(Icons.arrow_forward),
+                        label: Text(
+                          _isSubmitting ? 'Salvando...' : 'Criar conta',
+                        ),
                       ),
                     ],
                   ),
@@ -182,7 +265,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 SizedBox(width: 10),
                 Expanded(
                   child: Text(
-                    'Seus dados de demonstração não são enviados nem salvos.',
+                    'O contato de emergência ficará no seu perfil e só poderá '
+                    'ser lido pela sua conta.',
                     style: TextStyle(color: Color(0xFF4D5C57), height: 1.4),
                   ),
                 ),
@@ -202,6 +286,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     String? Function(String?)? validator,
     TextInputType? keyboardType,
     List<TextInputFormatter>? inputFormatters,
+    bool obscureText = false,
+    Iterable<String>? autofillHints,
   }) {
     return TextFormField(
       controller: controller,
@@ -212,6 +298,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       ),
       keyboardType: keyboardType,
       inputFormatters: inputFormatters,
+      obscureText: obscureText,
+      autofillHints: autofillHints,
       textInputAction: TextInputAction.next,
       validator: validator,
     );

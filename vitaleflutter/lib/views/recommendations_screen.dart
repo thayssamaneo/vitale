@@ -52,10 +52,10 @@ class _RecommendationsScreenState extends State<RecommendationsScreen> {
   }
 
   void _startAgain() {
-    Navigator.pushNamedAndRemoveUntil(
+    Navigator.pushReplacementNamed(
       context,
-      AppRoutes.registration,
-      (route) => false,
+      AppRoutes.symptoms,
+      arguments: widget.result.profile,
     );
   }
 
@@ -106,7 +106,12 @@ class _RecommendationsScreenState extends State<RecommendationsScreen> {
                             size: 20,
                           ),
                           const SizedBox(width: 10),
-                          Expanded(child: Text(area.name)),
+                          Expanded(
+                            child: Text(
+                              '${area.name} · '
+                              '${widget.result.severityByArea[area.id] ?? 'Moderada'}',
+                            ),
+                          ),
                         ],
                       ),
                     ),

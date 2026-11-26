@@ -1,6 +1,21 @@
 import '../models/patient_profile.dart';
 
 class RegistrationController {
+  String? validateEmail(String? value) {
+    final email = value?.trim() ?? '';
+    if (!RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$').hasMatch(email)) {
+      return 'Digite um e-mail válido.';
+    }
+    return null;
+  }
+
+  String? validatePassword(String? value) {
+    if (value == null || value.length < 8) {
+      return 'Use uma senha com pelo menos 8 caracteres.';
+    }
+    return null;
+  }
+
   String? validateName(String? value) {
     if (value == null || value.trim().length < 2) {
       return 'Digite pelo menos 2 caracteres.';

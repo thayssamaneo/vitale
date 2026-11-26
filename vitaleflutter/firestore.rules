@@ -1,0 +1,67 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function ownsUser(userId) {
+      return request.auth != null && request.auth.uid == userId;
+    }
+
+    function validProfile(data) {
+      return data.keys().hasAll([
+          'name',
+          'emergencyContact',
+          'createdAt',
+          'updatedAt'
+        ])
+        && data.keys().hasOnly([
+          'name',
+          'emergencyContact',
+          'createdAt',
+          'updatedAt'
+        ])
+        && data.name is string
+        && data.name.size() >= 2
+        && data.emergencyContact is map
+        && data.emergencyContact.keys().hasAll([
+          'name',
+          'phone',
+          'relationship'
+        ])
+        && data.emergencyContact.keys().hasOnly([
+          'name',
+          'phone',
+          'relationship'
+        ])
+        && data.emergencyContact.name is string
+        && data.emergencyContact.phone is string
+        && data.emergencyContact.relationship is string
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    match /users/{userId} {
+      allow get: if ownsUser(userId);
+      allow create: if ownsUser(userId) && validProfile(request.resource.data);
+      allow update: if ownsUser(userId)
+        && validProfile(request.resource.data)
+        && request.resource.data.createdAt == resource.data.createdAt;
+      allow list, delete: if false;
+
+      match /assessments/{assessmentId} {
+        allow get, list: if ownsUser(userId);
+        allow create: if ownsUser(userId)
+          && request.resource.data.keys().hasAll(['createdAt', 'selectedAreas'])
+          && request.resource.data.keys().hasOnly(['createdAt', 'selectedAreas'])
+          && request.resource.data.createdAt is timestamp
+          && request.resource.data.selectedAreas is list
+          && request.resource.data.selectedAreas.size() > 0
+          && request.resource.data.selectedAreas.size() <= 20;
+        allow update, delete: if false;
+      }
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

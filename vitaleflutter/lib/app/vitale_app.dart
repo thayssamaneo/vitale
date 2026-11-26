@@ -12,7 +12,7 @@ class VitaleApp extends StatelessWidget {
       title: 'Vitale',
       debugShowCheckedModeBanner: false,
       theme: VitaleTheme.light,
-      initialRoute: AppRoutes.registration,
+      initialRoute: AppRoutes.login,
       onGenerateRoute: AppRoutes.onGenerateRoute,
     );
   }

@@ -1,0 +1,24 @@
+{
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "vitale-b5e74",
+          "appId": "1:882455064065:android:4b641cd96dd1eca6dd5a00",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "vitale-b5e74",
+          "configurations": {
+            "android": "1:882455064065:android:4b641cd96dd1eca6dd5a00"
+          }
+        }
+      }
+    }
+  }
+}
