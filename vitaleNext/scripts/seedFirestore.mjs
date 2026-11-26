@@ -1,4 +1,6 @@
-import "dotenv/config";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, setDoc, getDocs, collection, limit, query } from "firebase/firestore";
 
@@ -7,16 +9,34 @@ import { getFirestore, doc, setDoc, getDocs, collection, limit, query } from "fi
  * no Cloud Firestore caso estejam vazias.
  *
  * Uso: node scripts/seedFirestore.mjs
- * Observação: utilize temporariamente regras que permitam escrita administrativa ou o emulador local.
+ * Observação: execute com credenciais ou regras que permitam escrita no catálogo.
  */
 
+// Carrega .env.local de forma nativa sem depender de pacotes externos
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const envPath = path.resolve(__dirname, "..", ".env.local");
+if (fs.existsSync(envPath)) {
+  const content = fs.readFileSync(envPath, "utf8");
+  for (const line of content.split("\n")) {
+    const trimmed = line.trim();
+    if (trimmed && !trimmed.startsWith("#") && trimmed.includes("=")) {
+      const idx = trimmed.indexOf("=");
+      const key = trimmed.slice(0, idx).trim();
+      const val = trimmed.slice(idx + 1).trim();
+      if (!process.env[key]) {
+        process.env[key] = val;
+      }
+    }
+  }
+}
+
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || "AIzaSyAZQsK2eUqzohu1291nuFv9ioH1wsvIfHk",
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || "vitale-b5e74.firebaseapp.com",
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || "vitale-b5e74",
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || "vitale-b5e74.firebasestorage.app",
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || "882455064065",
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID || "1:882455064065:web:8533d12fbdb71473dd5a00",
 };
 
 if (!firebaseConfig.projectId) {

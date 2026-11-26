@@ -22,9 +22,9 @@ export default function PerfilPage() {
     useAuth();
 
   // Estado dos dados pessoais
-  const [nome, setNome] = useState('');
-  const [idade, setIdade] = useState('');
-  const [cep, setCep] = useState('');
+  const [nome, setNome] = useState(() => usuario?.nome || '');
+  const [idade, setIdade] = useState(() => (usuario?.idade ? String(usuario.idade) : ''));
+  const [cep, setCep] = useState(() => usuario?.cep || '');
   const [erroPerfil, setErroPerfil] = useState<string | null>(null);
   const [sucessoPerfil, setSucessoPerfil] = useState<string | null>(null);
   const [salvandoPerfil, setSalvandoPerfil] = useState(false);
@@ -50,9 +50,12 @@ export default function PerfilPage() {
 
   useEffect(() => {
     if (usuario) {
-      setNome(usuario.nome || '');
-      setIdade(usuario.idade ? String(usuario.idade) : '');
-      setCep(usuario.cep || '');
+      const timer = setTimeout(() => {
+        setNome(usuario.nome || '');
+        setIdade(usuario.idade ? String(usuario.idade) : '');
+        setCep(usuario.cep || '');
+      }, 0);
+      return () => clearTimeout(timer);
     }
   }, [usuario]);
 

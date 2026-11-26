@@ -9,7 +9,7 @@ export function VitaleFooter() {
           Vitale • Cuidado humanizado e tecnologia acessível para a sua saúde.
         </p>
         <p className="text-[16px] leading-[24px] text-on-surface-variant">
-          © {new Date().getFullYear()} Vitale Saúde. Todos os direitos reservados.
+          © 2026 Vitale Saúde. Todos os direitos reservados.
         </p>
       </div>
     </footer>

@@ -42,7 +42,7 @@ const LABEL_GRAVIDADE: Record<Gravidade, { texto: string; classe: string }> = {
 };
 
 // TelaRecomendacoes: Exibe resumo, especialidades indicadas, técnicas de amenização e Alerta Crítico
-export default function RecomendacoesPage() {
+function RecomendacoesContent() {
   const params = useParams<{ id: string }>();
   const avaliacaoId = typeof params?.id === 'string' ? params.id : '';
   const { firebaseUser, usuario } = useAuth();
@@ -639,5 +639,22 @@ export default function RecomendacoesPage() {
         <VitaleFooter />
       </div>
     </ProtectedRoute>
+  );
+}
+
+export default function RecomendacoesPage() {
+  return (
+    <React.Suspense
+      fallback={
+        <div className="min-h-screen flex flex-col bg-surface items-center justify-center p-6 text-center">
+          <div className="w-14 h-14 rounded-full border-4 border-primary-fixed border-t-primary animate-spin mb-4" />
+          <p className="text-[20px] font-semibold text-on-surface">
+            Carregando orientações de saúde...
+          </p>
+        </div>
+      }
+    >
+      <RecomendacoesContent />
+    </React.Suspense>
   );
 }

@@ -101,7 +101,7 @@ function normalizeDateField(value: unknown): string {
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [firebaseUser, setFirebaseUser] = useState<User | null>(null);
   const [usuario, setUsuario] = useState<UsuarioVitale | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(() => Boolean(isFirebaseConfigured));
 
   const loadUserDocument = useCallback(async (user: User): Promise<UsuarioVitale> => {
     const db = getFirebaseDb();
@@ -144,14 +144,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (!isFirebaseConfigured) {
-      setLoading(false);
       return;
     }
 
     const auth = getFirebaseAuth();
     if (!auth) {
-      setLoading(false);
-      return;
+      const timer = setTimeout(() => setLoading(false), 0);
+      return () => clearTimeout(timer);
     }
 
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
